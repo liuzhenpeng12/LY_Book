@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="com.lyebook.book.mapper.BookDao">
+    <resultMap id="BookMap" type="com.lyebook.book.entity.Book">
+        <id column="b_id" property="id"/>
+        <result column="b_name" property="bookname"/>
+        <result column="b_intro" property="bookinto"/>
+        <result column="b_author" property="author"/>
+        <result column="b_img" property="imgpath"/>
+        <result column="b_book_url" property="bookurl"/>
+        <result column="b_data" property="date"/>
+    </resultMap>
+    <resultMap id="SectionMap" type="com.lyebook.book.entity.Section">
+        <id column="s_id" property="sid"/>
+        <id column="b_id" property="bid"/>
+        <result column="s_name" property="sname"/>
+        <result column="s_createtime" property="createtime"/>
+    </resultMap>
+    <resultMap id="CencentMap" type="com.lyebook.book.entity.Article">
+        <id column="c_id" property="cid"/>
+        <result column="s_id" property="sid"/>
+        <result column="c_concent" property="concent"/>
+        <result column="c_createtime" property="time"/>
+    </resultMap>
+    <!-- 以下为book表操作 -->
+    <select id="SelectBookAll" resultMap="BookMap">
+        select * from book
+    </select>
+    <select id="SelectBookId" resultMap="BookMap">
+        select b_id,b_book_url from book
+    </select>
+    <select id="SelectBookid" resultType="int">
+        select b_id from book
+    </select>
+    <insert id="insertBook" parameterType="com.lyebook.book.entity.Book">
+        insert into book(b_name,b_intro,b_author,b_img,b_book_url,b_data) values (#{bookname},#{bookinto},#{author},#{imgpath},#{bookurl},now())
+    </insert>
+    <update id="updateBookimgpath" parameterType="com.lyebook.book.entity.Book">
+        update book set b_img=#{imgpath} where b_id=#{id}
+    </update>
+    <!-- 以下是section表操作 -->
+    <select id="SelectSectionByBid" parameterType="int" resultType="String">
+        select s_name from section where b_id=#{value }
+    </select>
+    <select id="SelectSectionId" resultType="Integer">
+        select s_id from section
+    </select>
+    <insert id="insertSection" parameterType="com.lyebook.book.entity.Section">
+        insert into section(b_id,s_name,s_url,s_createtime) value (#{bid},#{sname},#{surl},now())
+    </insert>
+    <select id="getsectionurl" parameterType="int" resultType="String">
+        select s_url from section where b_id=#{value}
+    </select>
+    <!-- 以下是cencent表操作 -->
+    <!--<insert id="insertcencent" parameterMap="CencentMap">
+        insert into cencent(s_id,c_concent,c_createtime) value (#{sid})
+    </insert> -->
+</mapper>
