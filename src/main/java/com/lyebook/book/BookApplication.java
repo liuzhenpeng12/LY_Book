@@ -1,5 +1,6 @@
 package com.lyebook.book;
 
+import com.lyebook.book.util.PaChong;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
