@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lyebook.book.entity.Article;
 import com.lyebook.book.entity.Book;
+import com.lyebook.book.entity.Section;
 import com.lyebook.book.service.BookServiceIF;
 import com.lyebook.book.util.PaChong;
 import com.sun.imageio.plugins.common.I18N;
@@ -59,5 +60,10 @@ public class BookController {
             }
         }
     }
-
+    @RequestMapping("getAllSection")
+    public PageInfo<Section> GetAllSection(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "100") int pageSize, Integer bid){
+        PageHelper.startPage(pageNo,pageSize);
+        PageInfo<Section> pageInfo = new PageInfo<>(bookServiceIF.FindAllSectionById(bid));
+        return pageInfo;
+    }
 }

@@ -39,6 +39,9 @@
         update book set b_img=#{imgpath} where b_id=#{id}
     </update>
     <!-- 以下是section表操作 -->
+    <select id="SelectAllSectionById" parameterType="Integer" resultMap="SectionMap">
+        select * from section WHERE b_id=#{id}
+    </select>
     <select id="SelectSectionByBid" parameterType="int" resultType="String">
         select s_name from section where b_id=#{value }
     </select>

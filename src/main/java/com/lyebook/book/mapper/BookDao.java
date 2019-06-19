@@ -24,4 +24,5 @@ public interface BookDao {
     Page<String> SelectSectionByBid(int bid);
     List<String> getsectionurl(int bid);
     //List<String> insertcencent(Article article);
+    Page<Section> SelectAllSectionById(int bid);
 }

@@ -54,11 +54,6 @@ public class BookServiceImpl implements BookServiceIF {
         }
     }
 
-    /**
-     * 根据书id查找对应章节
-     * @param bid
-     * @return
-     */
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Page<String> getsection(int bid){
@@ -66,6 +61,12 @@ public class BookServiceImpl implements BookServiceIF {
         return bookDao.SelectSectionByBid(bid);
 
     }
+
+    @Override
+    public Page<Section> FindAllSectionById(int bid) {
+        return bookDao.SelectAllSectionById(bid);
+    }
+
     @Override
     public List<Integer> SelectAllbookid(){
         return bookDao.SelectBookid();
