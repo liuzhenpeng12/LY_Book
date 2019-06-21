@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="//cdnjs.loli.net/ajax/libs/mdui/0.4.1/css/mdui.min.css">
+    <script type="text/javascript" src="//cdnjs.loli.net/ajax/libs/mdui/0.4.1/js/mdui.min.js"></script>
+</head>
+<body>
+<div class="mdui-toolbar mdui-color-blue mdui-text-color-white-text">
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">menu</i></a>
+    <span class="mdui-typo-title ">Title</span>
+    <div class="mdui-toolbar-spacer"></div>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">search</i></a>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">refresh</i></a>
+    <a href="javascript:;" class="mdui-btn mdui-btn-icon"><i class="mdui-icon material-icons">more_vert</i></a>
+</div>
+<div id="mian">
+    <div id="list">
+        <dl></dl>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+<script type="text/javascript" src="js/jquery.params.js"></script>
+<script type="text/javascript">
+    var html = "";
+    function parseURL(){
+        var url = window.location.href;
+        url = url.split("?")[1];
+        var para = url.split("&");
+        var len = para.length;
+        var res = {};
+        var arr = [];
+        for(var i=0;i<len;i++){
+            arr = para[i].split("=");
+            res[arr[0]] = arr[1];
+        }
+        console.log(res);
+        return res;
+    }
+    var bid = parseURL().bookname;
+    console.log(bid)
+    $.ajax({
+        url:'http://localhost:8181/ebook/getzhangjie?bid='+bid,
+        type: 'POST',
+        success:function (res) {
+            console.log(res)
+            for (var i = 0; i < res.list.length; i++){
+                html += "<dd>"+"<a href="+res.list[i].surl+">"+res.list[i].sname+"</a>"+"</dd>";
+            }
+            $('#list dl').html(html);
+        }
+    })
+</script>
+</html>

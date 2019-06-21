@@ -12,7 +12,7 @@ function main() {
                     '    float: left;">'
                 html += '<div class="mdui-card" style="    width: 180px;height: 240px;">';
                 html += '<img src="'+data.list[i].imgpath+'" /></div>';
-                html +='<div class="mdui-card-primary"><div class="mdui-card-primary-title"><a href="book.html?bookname='+data.list[i].id+'">'+data.list[i].bookname+'</a></div><div class="mdui-card-primary-subtitle">'+data.list[i].author+'</div></div>';
+                html +='<div class="mdui-card-primary"><div class="mdui-card-primary-title"><a href="allsection.html?bookname='+data.list[i].id+'">'+data.list[i].bookname+'</a></div><div class="mdui-card-primary-subtitle">'+data.list[i].author+'</div></div>';
                 html +='</div></div>';
 
             }

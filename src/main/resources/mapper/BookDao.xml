@@ -13,6 +13,7 @@
     <resultMap id="SectionMap" type="com.lyebook.book.entity.Section">
         <id column="s_id" property="sid"/>
         <id column="b_id" property="bid"/>
+        <result column="s_url" property="surl"/>
         <result column="s_name" property="sname"/>
         <result column="s_createtime" property="createtime"/>
     </resultMap>
@@ -43,7 +44,7 @@
         select * from section WHERE b_id=#{id}
     </select>
     <select id="SelectSectionByBid" parameterType="int" resultType="String">
-        select s_name from section where b_id=#{value }
+        select b_name from section where b_id=#{value }
     </select>
     <select id="SelectSectionId" resultType="Integer">
         select s_id from section

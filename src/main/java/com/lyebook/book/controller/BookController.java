@@ -25,6 +25,13 @@ public class BookController {
     @Autowired
     BookServiceIF bookServiceIF;
     PaChong paChong = new PaChong();
+
+    /**
+     * 获取所有小说信息
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("allbook")
     public PageInfo<Book> Allbook(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "10") int pageSize){
         PageHelper.startPage(pageNo,pageSize);
@@ -43,10 +50,10 @@ public class BookController {
     public void intoArticle(){
         bookServiceIF.insertsection();
     }
-    @RequestMapping("getneirong")
-    public PageInfo<String> gettext(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "300") int pageSize,int bid){
+    @RequestMapping("getzhangjie")
+    public PageInfo<Section> gettext(@RequestParam(defaultValue = "1") int pageNo, @RequestParam(defaultValue = "300") int pageSize,int bid){
         PageHelper.startPage(pageNo,pageSize);
-        PageInfo<String> pageInfo = new PageInfo<>(bookServiceIF.getsection(bid));
+        PageInfo<Section> pageInfo = new PageInfo<>(bookServiceIF.FindAllSectionById(bid));
         return pageInfo;
     }
     @RequestMapping("neirong")
